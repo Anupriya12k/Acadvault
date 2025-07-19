@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Authorized</title>
+    </head>
+    <body>
+        <p>Failed to Share Data... Plz Try Again</p>
+
+        <script>
+            const payload = {
+                status: "failure",
+            };
+
+            const thirdPartyOrigin = new URL("<%= frontendRedirect %>").origin;
+
+            setTimeout(() => {
+                if (window.opener) {
+                    window.opener.postMessage(payload, thirdPartyOrigin);
+                }
+                window.close();
+            }, 2000);
+        </script>
+    </body>
+</html>
